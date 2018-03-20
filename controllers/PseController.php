@@ -65,5 +65,22 @@ class PseController {
         $arregloBancos = $cliente->make_contection("getBankList", $parametros);
         
         return $arregloBancos;
-    }   
+    }
+    
+    function createTransaction($paramform){
+        
+        $semilla = $this->getSeed();
+        
+        $parametros = array(); #Arreglo que almacena los datos de autenticacion del API
+        $parametros["login"]= $this->id;
+        $parametros["tranKey"]= $this->getHash($semilla);
+        $parametros["seed"]= $semilla;
+        
+        array_push($parametros, $paraform); # Se agregan el resto de parametros al servicio
+        $cliente = new ServiceController($this->url);
+        
+        $response = $cliente->make_contection("getBankList", $parametros);
+        
+        return $response;
+    }
 }
