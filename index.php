@@ -5,8 +5,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-    require_once './controllers/ServiceController.php';
-    $servicio = new ServiceController("http://www.webservicex.net/globalweather.asmx?WSDL");
+    #require_once './controllers/ServiceController.php';
+    #$servicio = new ServiceController("http://www.webservicex.net/globalweather.asmx?WSDL");
+    require_once './controllers/Bancos.php';;
     
 ?>
 <html>
@@ -17,10 +18,13 @@ and open the template in the editor.
     <body>
         <h1>HOLA MUNDOS!!</h1>
         <?php
-            $parametros = array();
-            $parametros["CountryName"]="colombia";
-            $response=$servicio->make_contection("GetCitiesByCountry", $parametros);
-            echo "<p>".implode($response)."</p><br><br><br><br>";
+            #$parametros = array();
+            #$parametros["CountryName"]="colombia";
+            #$response=$servicio->make_contection("GetCitiesByCountry", $parametros);
+            $Bancos = new Bancos();
+            $response = $Bancos->getBankList();
+            echo "<p>".implode($response."<br><br>");
+            
             var_dump($response);
         ?>
     </body>

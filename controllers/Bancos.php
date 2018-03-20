@@ -11,8 +11,17 @@
  * ademas de verificar y/o armar la cache como indica en la documentación
  * @author Manucal
  */
+
+require_once 'PseController.php';
 class Bancos {
     private $ListaBancos;
     
+    private $client;
     
+    
+    function getBankList(){
+        $client = new PseController();
+        $this->ListaBancos = $client->getBankList();
+        return $this->ListaBancos;
+    }
 }
